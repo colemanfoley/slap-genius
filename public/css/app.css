@@ -28,3 +28,13 @@
   content: "";
   padding: 0;
 }
+
+#songs {
+  list-style-type: none;
+}
+
+.songContainer {
+  border: 1px solid black;
+  display: inline-block;
+  max-width: 400px;
+}

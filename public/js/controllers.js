@@ -17,11 +17,17 @@ angular.module('myApp.controllers', []).
     });
 
   }).
-  controller('MyCtrl1', function ($scope) {
-    // write Ctrl here
-
+  controller('SongMapCtrl', function ($scope, $http) {
+    $http.get('/api/songs').
+      success(function(data, status, headers, config) {
+        $scope.songs = data.songs;
+      });
   }).
-  controller('MyCtrl2', function ($scope) {
-    // write Ctrl here
-
+  controller('AddSongCtrl', function ($scope, $http) {
+    $scope.submitSong = function() {
+      $http.post('/api/song', $scope.form).
+        success(function(data) {
+          //$location.path('/');
+        });
+    };
   });
