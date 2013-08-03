@@ -7,7 +7,8 @@ var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
-  path = require('path');
+  path = require('path'),
+  mongoose = require('mongoose');
 
 var app = module.exports = express();
 
@@ -36,7 +37,7 @@ if (app.get('env') === 'production') {
   // TODO
 };
 
-
+var db = mongoose.connect('mongodb://localhost/mean-test');
 /**
  * Routes
  */
