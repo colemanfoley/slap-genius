@@ -37,7 +37,13 @@ if (app.get('env') === 'production') {
   // TODO
 };
 
-var db = mongoose.connect('mongodb://localhost/mean-test');
+var db = mongoose.connect('mongodb://localhost/slap-genius');
+var dbTest = mongoose.connection;
+
+dbTest.on('error', console.error.bind(console, 'connection error:'));
+dbTest.once('open', function callback () {
+  console.log('Connected to DB!');
+});
 /**
  * Routes
  */
