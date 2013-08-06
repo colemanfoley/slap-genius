@@ -39,6 +39,11 @@ if (app.get('env') === 'production') {
 
 // Database set-up
 var sequelize = new Sequelize('slap-genius', 'root');
+var Song = sequelize.define('Song', {
+	title: Sequelize.STRING,
+	artist: Sequelize.STRING
+});
+Song.sync();
 
 /**
  * Routes
