@@ -8,7 +8,7 @@ var express = require('express'),
   api = require('./routes/api'),
   http = require('http'),
   path = require('path'),
-  mongoose = require('mongoose');
+  Sequelize = require('sequelize');
 
 var app = module.exports = express();
 
@@ -37,13 +37,9 @@ if (app.get('env') === 'production') {
   // TODO
 };
 
-var db = mongoose.connect('mongodb://localhost/slap-genius');
-var dbTest = mongoose.connection;
+// Database set-up
+var sequelize = new Sequelize('slap-genius', 'root');
 
-dbTest.on('error', console.error.bind(console, 'connection error:'));
-dbTest.once('open', function callback () {
-  console.log('Connected to DB!');
-});
 /**
  * Routes
  */
@@ -55,6 +51,7 @@ app.get('/partials/:name', routes.partials);
 // JSON API
 app.get('/api/songs', api.songs);
 app.post('/api/song', api.addSong);
+
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 
