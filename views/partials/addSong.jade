@@ -2,11 +2,11 @@ h2 Add a song
 form(name="addSongForm")
 	fieldset
 		label(for='title') Title:
-		input(ng-model='form.title', name='title')
+		input(ng-model='addSongForm.title', name='title')
 	fieldset
 		label(for='artist') Artist:
-		input(ng-model='form.artist', name='artist')
+		input(ng-model='addSongForm.artist', name='artist')
 	fieldset
 		label(for='samples') Samples:
-		input(ng-model='form.samples', name='samples', placeholder='What does this song sample?')
+		input(ng-model='addSongForm.samples', name='samples', placeholder='What does this song sample?')
 	button(ng-click='addSong()') Submit Song

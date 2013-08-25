@@ -1,4 +1,5 @@
 ul(id='songs')
-	li(class="songContainer", ng-repeat='song in songs')
-		h3 {{song.title}}
-		h3 {{song.artist}}
+	li(class='songContainer', ng-repeat='song in songs')
+		span {{song.title}} {{song.artist}}
+		ul(class='samples', ng-repeat='sample in song.samples')
+			li(class='sample') {{sample}}
