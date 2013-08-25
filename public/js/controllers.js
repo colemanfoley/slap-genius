@@ -3,17 +3,21 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('SongMapCtrl', function ($scope, $http) {
-    $http.get('/api/songs').
-      success(function(data, status, headers, config) {
-        $scope.songs = data.songs;
-      });
+  controller('SongMapCtrl', function ($scope, angularFire) {
+    var url = 'https://slapgenius.firebaseio.com/songs';
+    var promise = angularFire(url, $scope, 'songs', []);
+    promise.then(function() {
+      console.log($scope.songs);
+    })
   }).
-  controller('AddSongCtrl', function ($scope, $http) {
-    $scope.submitSong = function() {
-      $http.post('/api/song', $scope.form).
-        success(function(data) {
-          //$location.path('/');
-        });
-    };
+  controller('AddSongCtrl', function ($scope, angularFire) {
+    var url = 'https://slapgenius.firebaseio.com/songsArray';
+    var promise = angularFire(url, $scope, 'songsArray', []);
+    promise.then(function() {
+      $scope.songsArray.push({title: "Homecoming", artist: "Kanye West"});
+      console.log($scope.songsArray);
+      // $scope.addSong = function() {
+      //   $scope.songsArray.push({title: $scope.addSongForm.title, artist: $scope.addSongForm.artist});
+      // };
+    });
   });
